@@ -4,5 +4,8 @@ module.exports = {
         "browser": true,
         "node": true,
         "jasmine": true
+    },
+    "rules": {
+      "import/prefer-default-export": "off"
     }
 };
