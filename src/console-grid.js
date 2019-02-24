@@ -16,10 +16,14 @@ const Grid = {
   addSnake: state => pipe(
     ...state.snake.map(Grid.set('X')),
   ),
+  addCrash: state => state.snake.length === 0
+    ? args => args.map(arr => arr.map(k('#')))
+    : args => args,
   fromState: state => pipe(
     Grid.create,
     Grid.addSnake(state),
     Grid.addApple(state),
+    Grid.addCrash(state),
   )(state),
 };
 
