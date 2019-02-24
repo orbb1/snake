@@ -1,9 +1,9 @@
-import { getInitialState } from './snake';
+import { getInitialState, nextState } from './snake';
 import {
   repeat, pipe, adjust, k,
 } from './helpers';
 
-const State = getInitialState();
+let State = getInitialState();
 
 const Grid = {
   create: table => repeat(repeat('.')(table.cols))(table.rows),
@@ -21,5 +21,6 @@ const Grid = {
 };
 
 const show = () => console.log(`\x1Bc ${Grid.toString(Grid.fromState(State))}`);
+const step = () => { State = nextState(State); };
 
-show();
+setInterval(() => { step(); show(); }, 500);
