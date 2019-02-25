@@ -28,12 +28,12 @@ const addMove = (state, vector) => checkIfValidMove(vector)(state)
 const dropLast = snakeArr => snakeArr.slice(0, snakeArr.length - 1);
 const dropFirst = snakeArr => snakeArr.slice(1);
 const getProp = key => obj => obj[key];
-const move = x => y => ((y % x) + x) % x;
+const calcPos = x => y => ((y % x) + x) % x;
 const nextHead = state => state.snake.length < 1
   ? { x: 10, y: 2 }
   : {
-    x: move(state.cols)(state.snake[0].x + state.move[0].x),
-    y: move(state.rows)(state.snake[0].y + state.move[0].y),
+    x: calcPos(state.cols)(state.snake[0].x + state.move[0].x),
+    y: calcPos(state.rows)(state.snake[0].y + state.move[0].y),
   };
 const willCrash = state => state.snake.find(checkIfEqual(nextHead(state)));
 const willEat = state => checkIfEqual(nextHead(state))(state.apple);
